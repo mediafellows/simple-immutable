@@ -14,7 +14,7 @@ module Simple
       when Array
         raise ArgumentError, 'Object nested too deep (or inner loop?)' if max_depth.negative?
 
-        object.map { |obj| create obj, null_record:, max_depth: max_depth - 1 }
+        object.map { |obj| create obj, null_record: null_record, max_depth: max_depth - 1 }
       when Hash
         new(object, null_record)
       else
@@ -56,10 +56,10 @@ module Simple
 
     # fetches key from a hsh, regardless of it being a Symbol or a String.
     # Yields the block if the key cannot be found.
-    def self.fetch_symbol_or_string_from_hash(hsh, key, &)
+    def self.fetch_symbol_or_string_from_hash(hsh, key, &block)
       if hsh
         hsh.fetch(key.to_sym) do
-          hsh.fetch(key.to_s, &)
+          hsh.fetch(key.to_s, &block)
         end
       else
         yield
