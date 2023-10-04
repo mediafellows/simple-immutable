@@ -11,7 +11,7 @@ class Simple::Immutable
     when Array
       raise ArgumentError, "Object nested too deep (or inner loop?)" if max_depth < 0
 
-      object.map { |obj| create obj, null_record: null_record, max_depth: max_depth - 1 }
+      object.map { |obj| create obj, null_record:, max_depth: max_depth - 1 }
     when Hash
       new(object, null_record)
     else
@@ -53,10 +53,10 @@ class Simple::Immutable
 
   # fetches key from a hsh, regardless of it being a Symbol or a String.
   # Yields the block if the key cannot be found.
-  def self.fetch_symbol_or_string_from_hash(hsh, key, &block)
+  def self.fetch_symbol_or_string_from_hash(hsh, key, &)
     if hsh
       hsh.fetch(key.to_sym) do
-        hsh.fetch(key.to_s, &block)
+        hsh.fetch(key.to_s, &)
       end
     else
       yield
@@ -90,7 +90,9 @@ class Simple::Immutable
       super
   end
 
+  # rubocop:disable Style/OptionalBooleanParameter
   def respond_to?(sym, include_all = false)
+    # rubocop:enable Style/OptionalBooleanParameter
     super || @hsh.key?(sym.to_s) || @hsh.key?(sym.to_sym)
   end
 
