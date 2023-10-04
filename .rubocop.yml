@@ -1,35 +1,20 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - bin/**/*
-    - test/**/*
+    - test/**/*.rb
+    - vendor/**/*
     - scripts/**/*
-    - ./*.gemspec
-    - Gemfile
-  NewCops: enable
+    - simple-immutable.gemspec
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
+Naming/FileName:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Lint/MissingCopEnableDirective:
-  Enabled: false
-
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: false
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
 Metrics/MethodLength:
-  Max: 20
+  Enabled: false
 
 Lint/IneffectiveAccessModifier:
   Enabled: false

@@ -20,6 +20,4 @@ Gem::Specification.new do |gem|
 
   # executables are used for development purposes only
   gem.executables   = []
-
-  gem.required_ruby_version = '>= 2.3'
 end
