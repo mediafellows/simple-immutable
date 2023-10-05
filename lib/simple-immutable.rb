@@ -1,3 +1,3 @@
-# rubocop:disable Naming/FileName
+# frozen_string_literal: true
 
-require_relative "simple/immutable"
+require_relative 'simple/immutable'
